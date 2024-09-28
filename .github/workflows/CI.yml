@@ -2,9 +2,9 @@ name: Github Actions CI
 
 on:
   push:
-    branches: [main]
+    branches: [main, online-main]
   pull_request:
-    branches: [main]
+    branches: [main, online-main]
 
 jobs:
   build:

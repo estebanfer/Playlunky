@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "0 15 * * *" # run at 3 PM UTC every day
   push:
+    branches:
+      - online-main
     paths:
       - "**/Nightly.yml"
   workflow_dispatch:
@@ -25,7 +27,7 @@ jobs:
           git status
           git config user.email "autobuilder@github.com"
           git config user.name "Autobuilder"
-          git pull origin main
+          git pull origin online-compat-stuff-entity-hooks
           git submodule update --init --recursive
           popd
 

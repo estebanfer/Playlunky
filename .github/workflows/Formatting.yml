@@ -2,9 +2,9 @@ name: Formatting
 
 on:
   push:
-    branches: [main]
+    branches: [main, online-main]
   pull_request:
-    branches: [main]
+    branches: [main, online-main]
   workflow_dispatch:
     inputs:
       do_formatting:
