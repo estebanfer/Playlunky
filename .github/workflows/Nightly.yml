@@ -68,12 +68,12 @@ jobs:
         id: artifacts
         run: |
           pushd publish
-          tar -a -c -f ../playlunky_nightly.zip *
+          tar -a -c -f ../playlunky_nightly_online.zip *
           popd
-          echo "##[set-output name=hash;]$(( Get-FileHash playlunky_nightly.zip ).Hash.substring(0, 7))"
+          echo "##[set-output name=hash;]$(( Get-FileHash playlunky_nightly_online.zip ).Hash.substring(0, 7))"
 
       - name: Rename Artifact
-        run: Rename-Item playlunky_nightly.zip playlunky_nightly_${{ steps.artifacts.outputs.hash }}.zip
+        run: Rename-Item playlunky_nightly_online.zip playlunky_nightly_online_${{ steps.artifacts.outputs.hash }}.zip
 
       - name: Create release
         uses: marvinpinto/action-automatic-releases@v1.1.0
@@ -81,7 +81,7 @@ jobs:
           ACTIONS_ALLOW_UNSECURE_COMMANDS: "true"
         with:
           repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "nightly"
+          automatic_release_tag: "nightly_online"
           prerelease: true
-          title: "Nightly Build"
-          files: ./playlunky_nightly_${{ steps.artifacts.outputs.hash }}.zip
+          title: "Nightly Build (Online branch)"
+          files: ./playlunky_nightly_online_${{ steps.artifacts.outputs.hash }}.zip
